@@ -21,18 +21,21 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    @foreach ($comman_setting as $value)
-                                        <form action="{{ route('university.comman-setting.store') }}" method="post">
+                                    @foreach ($comman_setting as $key => $value)
+                                        <form action="{{ route('university.comman-setting.update', $value->id) }}"
+                                            method="post">
                                             @csrf
-                                            {{-- <input type="hidden" name="id" value="{{ $value->id }}" id="id"> --}}
+                                            @method('put')
+                                            <input type="hidden" name="id[]" value="{{ $value->id }}" id="id">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="subject_id">Subject</label>
+                                                        <label for="subject_id"
+                                                            value="">{{ $value->subject->name }}</label>
                                                         <input type="text"
                                                             class="form-control @error('subject_id') is-invalid @enderror"
-                                                            id="subject_id" name="subject_id"
-                                                            value="{{ $value->subject->name }}">
+                                                            id="subject_id" name="subject_id[]"
+                                                            value="{{ $value->subject_id }}">
                                                         @error('subject_id')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
@@ -45,7 +48,8 @@
                                                         <label for="marks">Marks</label>
                                                         <input type="text"
                                                             class="form-control @error('marks') is-invalid @enderror"
-                                                            id="marks" name="marks" value="{{ $value->marks }}">
+                                                            id="marks" name="marks[]"
+                                                            value="{{ $value->marks }}">
                                                         @error('marks')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>

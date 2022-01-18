@@ -65,7 +65,6 @@ class SubjectController extends Controller
      */
     public function update(subjectUpdate $request, $id)
     {
-
         $sub_update = Subject::find($id);
         $sub_update->name = $request->name;
         $sub_update->code = $request->code;

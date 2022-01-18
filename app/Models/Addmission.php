@@ -30,7 +30,7 @@ class Addmission extends Model
 
     public function college()
     {
-        return $this->hasOne(Collage::class, 'id', 'college_id');
+        return $this->hasOne(College::class, 'id', 'college_id');
     }
 
 

@@ -37,7 +37,7 @@
         </ul>
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="{{ route('college.merit.index') }}"><i class="fa fa-archive orange_color"></i> <span>
+                <a href="#"><i class="fa fa-archive orange_color"></i> <span>
                        Addmisson Confirmation
                     </span></a>
             </li>

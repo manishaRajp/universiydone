@@ -16,7 +16,7 @@ class AdmissionController extends Controller
    
     public function index()
     {
-        return view('frontend.dashboard.welcome');
+        
     }
 
     
@@ -50,7 +50,7 @@ class AdmissionController extends Controller
    
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -86,4 +86,6 @@ class AdmissionController extends Controller
     {
         dd(23323);
     }
+
+   
 }

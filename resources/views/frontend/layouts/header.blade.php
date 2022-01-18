@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 @if(auth()->user())
-                {{-- <li class="nav-item"><a class="nav-link" href="#">New &#x1F4D6;</a></li> --}}
+                <li class="nav-item"><a class="nav-link" href="{{ route('addmoission-confirm.index') }}"> Admission Confirm ,&#x1F60A;</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('addmission.create')}}"> Admmision ,&#x1F60A;</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('marks.create')}}"> Add Marks,✍🏼</a></li>
                 <li class=" nav-item dropdown">

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Student\AddmissionConfirm;
 use App\Http\Controllers\Student\AdmissionController;
 use App\Http\Controllers\Student\MarkController;
 use Illuminate\Support\Facades\Auth;
@@ -33,3 +33,10 @@ Route::resource('addmission', AdmissionController::class);
 //---------------------------marks-------------------------------------
 
 Route::resource('marks',MarkController::class);
+
+
+
+
+//---------------------------Addmission confirm-------------------------------------
+
+Route::resource('addmoission-confirm', AddmissionConfirm::class);
