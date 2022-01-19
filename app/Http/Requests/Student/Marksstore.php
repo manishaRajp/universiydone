@@ -24,17 +24,13 @@ class Marksstore extends FormRequest
     public function rules()
     {
         return [
-            'subject_id' => 'required|unique:student_marks',
-            'total_mark' => 'required|integer',
-            'obtain_mark' => 'required|integer',
+            'obtain_mark' => 'required',
+            'obtain_mark.*' => 'required|integer',
         ];
     }
 
 
     public function messages()
     {
-        return [
-            'subject_id.unique' => 'This Subject Marks Already Existed.',
-        ];
     }
 }

@@ -4,6 +4,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <div class="container">
+        @if($status == false)
         <form class="form-horizontal" role="form" method="POST" action="{{ route('addmoission-confirm.store') }}"
             enctype="multipart/form-data">
             @csrf
@@ -110,6 +111,11 @@
             <a href="{{ route('home') }}" class="btn-lg btn-outline-danger"><i
                     class="fa fa-thermometer-full"></i>Cancel</a>
         </form>
+        @else
+        <p>
+           Print A error msg and give link to go for Addmission
+        </p>
+        @endif
     </div>
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

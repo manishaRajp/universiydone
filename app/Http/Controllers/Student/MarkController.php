@@ -6,47 +6,63 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\Marksstore;
 use App\Models\StudentMark;
 use App\Models\Subject;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class MarkController extends Controller
 {
     public function index()
     {
-       return view('frontend.dashboard.welcome');
+        return view('frontend.dashboard.welcome');
     }
 
-   
+
     public function create()
     {
+        $student_marks = StudentMark::where('user_id',[Auth::user()->id])->first();
         $sub = Subject::all();
-        return view('frontend.marks.add', compact('sub'));
+        return view('frontend.marks.add', compact('sub','student_marks'));
     }
 
-   
-    public function store(Marksstore $request)
+
+    public function store(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $add_course = new StudentMark();
-        $add_course->user_id = $user_id;
-        $add_course->subject_id =  $request['subject_id'];
-        $add_course->total_mark = $request['total_mark'];
-        $add_course->obtain_mark = $request['obtain_mark'];
-        $add_course->save();
-        return redirect()->route('marks.index');
+        DB::beginTransaction();
+        try {
+            $id = StudentMark::whereIn('user_id', [Auth::user()->id])->count();
+            if (
+                $id < 1
+            ) {
+                foreach ($request['sub'] as $key => $val) {
+                    $value = StudentMark::create([
+                        'user_id' => Auth::user()->id,
+                        'subject_id' => $key,
+                        'total_mark' => '100',
+                        'obtain_mark' => $val,
+                    ]);
+                }
+                DB::commit();
+                return view('frontend.dashboard.welcome');
+            } else {
+                dd('id existst');
+            }
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            Log::info($e);
+            DB::rollBack();
+            dd(1243);
+        }
     }
 
     public function show($id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //

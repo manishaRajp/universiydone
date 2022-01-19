@@ -40,6 +40,10 @@
                 <a href="{{ route('university.comman-setting.index') }}"><i class="fa fa-gear orange_color"></i>
                     <span>Comman setting</span></a>
             </li>
+            <li class="active">
+                <a href="{{ route('university.confirm-addmission.index')}}"><i class="fa fa-gear orange_color"></i>
+                    <span>Addmision Confrim List</span></a>
+            </li>
         </ul>
     </div>
 </nav>

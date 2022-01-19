@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('frontend/dashboard/welcome');
 });
@@ -25,6 +26,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['middleware' => 'auth:web'], function () {
+    
 
 //---------------------------Admission-------------------------------------
 
@@ -36,7 +39,7 @@ Route::resource('marks',MarkController::class);
 
 
 
-
 //---------------------------Addmission confirm-------------------------------------
 
 Route::resource('addmoission-confirm', AddmissionConfirm::class);
+});

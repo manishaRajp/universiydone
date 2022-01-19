@@ -1,6 +1,6 @@
  <?php
 
-
+use App\Http\Controllers\College\AddmissionConfirm;
 use  App\Http\Controllers\College\CollegeController;
 use App\Http\Controllers\College\CourseController;
 use App\Http\Controllers\College\LoginController;
@@ -45,6 +45,10 @@ Route::resource('course',CourseController::class);
 
 
 //---------------------------------------Course Selection----------------------------------
-
 Route::resource('merit',MeritController::class);
+
+
+//--------------------------------------------Addmission Confirm----------------------------
+Route::resource('college-confirm-addmission',AddmissionConfirm::class);
+
 });

@@ -7,6 +7,7 @@
             </div>
         </div>
     </div>
+    {{-- @dd($comman_setting) --}}
     <div class="row column1">
         <div class="col-md-2"></div>
         <div class="col-md-8">
@@ -21,45 +22,33 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    @foreach ($comman_setting as $key => $value)
-                                        <form action="{{ route('university.comman-setting.update', $value->id) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('put')
-                                            <input type="hidden" name="id[]" value="{{ $value->id }}" id="id">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="subject_id"
-                                                            value="">{{ $value->subject->name }}</label>
-                                                        <input type="text"
-                                                            class="form-control @error('subject_id') is-invalid @enderror"
-                                                            id="subject_id" name="subject_id[]"
-                                                            value="{{ $value->subject_id }}">
-                                                        @error('subject_id')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <label for="marks">Marks</label>
-                                                        <input type="text"
-                                                            class="form-control @error('marks') is-invalid @enderror"
-                                                            id="marks" name="marks[]"
-                                                            value="{{ $value->marks }}">
-                                                        @error('marks')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    @endforeach
-                                    <input type="submit" class="btn btn-primary" value="Save changes">
+        
+                                    <form action="{{ route('university.comman-setting.store') }}" method="post">
+                                        @csrf
+                                        @if (count($comman_setting) == 0)
+                                            @foreach ($subject as $subjects)
+                                                <label for="marks">{{ Form::label('marks', $subjects->name) }}</label>
+                                                <input type="number" name="marks[{{ $subjects->id }}]"
+                                                    class="form-control" id="marks"
+                                                    onKeyPress="if(this.value.length==3) return false;" min="0" max="100"
+                                                    required></br>
+                                                @error('marks')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            @endforeach
+                                        @else
+                                            @foreach ($comman_setting as $common_settings)
+                                                <label
+                                                    for="marks">{{ Form::label('marks', $common_settings->subject->name) }}</label>
+                                                <input type="number" name="marks[{{ $common_settings->id }}]"
+                                                    class="form-control"
+                                                    onKeyPress="if(this.value.length==3) return false;" min="0" max="100"
+                                                    id="marks" value="{{ $common_settings->marks }}" required></br>
+                                            @endforeach
+                                        @endif
+                                        <input type="submit" class="btn btn-primary" value="Save changes">
                                     </form>
                                 </div>
                             </div>

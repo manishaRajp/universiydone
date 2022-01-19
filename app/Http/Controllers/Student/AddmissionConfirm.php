@@ -11,92 +11,67 @@ use Illuminate\Support\Facades\Auth;
 
 class AddmissionConfirm extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
-    {
-
+    {  
         $addmission = Addmission::where('user_id', Auth::user()->id)->first();
-        return view('frontend.addmission.index', compact('addmission'));
-
+        if($addmission == NULL){
+            $status = true;
+        } else{
+            $status = false;
+        }
+        // dd($addmission);
+        // $addmission_confirm = AddmissionConfirmation::where('addmission_id',
+        // $addmission->id)->first();
+        // dd($addmission_confirm);
+        return view('frontend.addmission.admission-confirm', compact('addmission','status'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-      
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        // dd(Auth::user()->id);
-        $addmissionConfirm = Addmission::where('user_id', Auth::user()->id)->pluck('id')->first();
-        // dd($addmissionConfirm);
-        $confirm = new AddmissionConfirmation();
-        $confirm->addmission_id = $addmissionConfirm;
-        $confirm->confirm_college_id = $request['college_id'];
-        $confirm->confirm_round_id = $request['merit_round_id'];
-        $confirm->confirm_merit = $request['merit'];
-        $confirm->confirmation_type = 'M';
-        $confirm->save();
-        return redirect()->route('addmoission-confirm.index');
-
+        $addmission_confirm = AddmissionConfirmation::where('addmission_id', $request['addmission_id'])->first();
+        dd($addmission_confirm);
+        if ($addmission_confirm == null) {
+            $addmission = Addmission::where('user_id', Auth::user()->id)->first();
+            $request->session()->flash('danger', 'Please go for Admmision Prosses');
+            return view('frontend.addmission.admission-confirm', compact('addmission'));
+        } else {
+            $addmissionConfirm = Addmission::where('user_id', Auth::user()->id)->pluck('id')->first();
+            $confirm = new AddmissionConfirmation();
+            $confirm->addmission_id = $addmissionConfirm;
+            $confirm->confirm_college_id = $request['college_id'];
+            $confirm->confirm_round_id = $request['merit_round_id'];
+            $confirm->confirm_merit = $request['merit'];
+            $confirm->confirmation_type = 'M';
+            $confirm->save();
+            return redirect()->route('home');
+        }
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

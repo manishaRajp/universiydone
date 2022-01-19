@@ -17,4 +17,10 @@ class AddmissionConfirmation extends Model
         'confirm_merit',
         'confirmation_type',
     ];
+
+
+    public function Addmission_id()
+    {
+       return $this->hasOne(AddmissionConfirmation::class,'id','addmission_id');
+    }
 }

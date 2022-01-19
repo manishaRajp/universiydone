@@ -22,9 +22,10 @@ class AdmissionController extends Controller
     
     public function create()
     {
+        $adddmision_check = Addmission::where('user_id', [Auth::user()->id])->first();
         $clg_select = College::all();
         $course_select = Course::all();
-        return view('frontend.addmission.add', compact('clg_select','course_select'));
+        return view('frontend.addmission.add', compact('clg_select','course_select','adddmision_check'));
     }
 
   
@@ -44,7 +45,7 @@ class AdmissionController extends Controller
         $addmission->merit_round_id = $merit_round;
         $addmission->status = 1;
         $addmission->save();
-        return redirect()->route('addmission.index');
+        return redirect()->route('home');
     }
 
    

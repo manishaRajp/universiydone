@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\University\AddmissionConfirm;
 use App\Http\Controllers\University\LoginController;
 use App\Http\Controllers\University\CollegeController;
 use App\Http\Controllers\University\Comman_setting;
@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth:university'], function () {
     Route::get('merti-status', [Meritcontroller::class, 'MeritStatus'])->name('merti_status');
 
 
-    //-------------------------------------Cooma_setings-----------------------------------
+    //-------------------------------------Common_setings-----------------------------------
     Route::resource('comman-setting',Comman_setting::class);
 
 
@@ -63,6 +63,9 @@ Route::group(['middleware' => 'auth:university'], function () {
     Route::resource('subject',SubjectController::class);
 
 
-    //-------------------------------------subject-----------------------------------
+    //-------------------------------------Course-----------------------------------
     Route::resource('course',CourseController::class);
+
+    //-----------------------------------AddmissionConfirm--------------------------
+    Route::resource('confirm-addmission',AddmissionConfirm::class);
 });

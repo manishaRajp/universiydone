@@ -24,8 +24,8 @@ class CommanSettingUpdate extends FormRequest
     public function rules()
     {
         return [
-            'subject_id[]' => 'required',
-            'marks[]' => 'required|integer|between:0,100',
+            'marks' => 'required',
+            'marks.*' => 'integer|between:0,100'
         ];
     }
 }

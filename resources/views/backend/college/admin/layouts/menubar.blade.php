@@ -37,8 +37,15 @@
         </ul>
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="#"><i class="fa fa-archive orange_color"></i> <span>
-                       Addmisson Confirmation
+                <a href="{{ route('college.college-confirm-addmission.index') }}"><i class="fa fa-archive orange_color"></i> <span>
+                       Addmisson MeritBse
+                    </span></a>
+            </li>
+        </ul>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="{{ route('college.college-confirm-addmission.create') }}"><i class="fa fa-archive orange_color"></i> <span>
+                       Addmisson Reservedbased
                     </span></a>
             </li>
         </ul>
