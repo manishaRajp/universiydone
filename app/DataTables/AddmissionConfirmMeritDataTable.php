@@ -25,16 +25,11 @@ class AddmissionConfirmMeritDataTable extends DataTable
   
     public function query(AddmissionConfirmation $model)
     {
-        $college_merit = CollegeMerit::where('college_id', Auth::user()->id)->first();
-        $college_id = Auth::user()->id;
-        if ($college_merit) {
-            return
-            $model->where('merit', '>=', $college_merit->merit)
-            ->where('college_id', 'like', '%"' . $college_id . '"%')
-            ->newQuery();
-        } else {
-            return $model->where('id', -1)->newQuery();
-        }
+
+        // $merit = AddmissionConfirmation::select('confirmation_type','M')->first();
+        return AddmissionConfirmation::select('confirmation_type', 'M')->first();
+
+        
     }
 
     /**
