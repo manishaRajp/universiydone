@@ -49,4 +49,7 @@ class CollegeController extends Controller
         $admin->save();
         return view('backend.college.admin.dashboard');
     }
+
+
+    
 }

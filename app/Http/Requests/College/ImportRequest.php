@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Student;
+namespace App\Http\Requests\College;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Marksstore extends FormRequest
+class ImportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,7 @@ class Marksstore extends FormRequest
     public function rules()
     {
         return [
-            'obtain_mark' => 'required',
-            'obtain_mark.*' => 'required|integer|',
+            'file' => 'required',
         ];
-    }
-
-
-    public function messages()
-    {
     }
 }

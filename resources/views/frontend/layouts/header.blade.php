@@ -34,7 +34,7 @@
                     </li>
                 @else
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        <a href="{{ route('login') }}" class="input1">Log in</a>
+                        <a href="{{ route('login') }}" class="input1">Login</a>
                         <a href="{{ route('register') }}" class="input1">Register</a>
                     </div>
             </ul>

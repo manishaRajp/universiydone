@@ -22,9 +22,9 @@ class MarkController extends Controller
 
     public function create()
     {
-        $student_marks = StudentMark::where('user_id',[Auth::user()->id])->first();
+        $student_marks = StudentMark::where('user_id', [Auth::user()->id])->first();
         $sub = Subject::all();
-        return view('frontend.marks.add', compact('sub','student_marks'));
+        return view('frontend.marks.add', compact('sub', 'student_marks'));
     }
 
 
@@ -32,6 +32,9 @@ class MarkController extends Controller
     {
         DB::beginTransaction();
         try {
+            $total_marks = 0;
+            $total_obtain_mark = 0;
+            $totalMarksMerit = 0;
             $id = StudentMark::whereIn('user_id', [Auth::user()->id])->count();
             if (
                 $id < 1
@@ -43,17 +46,19 @@ class MarkController extends Controller
                         'total_mark' => '100',
                         'obtain_mark' => $val,
                     ]);
+                    $total_marks += $value->total_mark;
+                    $total_obtain_mark += $value->obtain_mark;
                 }
+                $merit = ($total_obtain_mark / $total_marks) * 100;
+                $student_merit_total = round($merit);
                 DB::commit();
-                return view('frontend.dashboard.welcome');
+                return view('frontend.marks.data', compact('student_merit_total', 'total_marks', 'total_obtain_mark'));
             } else {
-                dd('id existst');
+               return redirect()->back();
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
             Log::info($e);
             DB::rollBack();
-            dd(1243);
         }
     }
 
@@ -62,7 +67,7 @@ class MarkController extends Controller
         
     }
 
-   
+
     public function edit($id)
     {
         //

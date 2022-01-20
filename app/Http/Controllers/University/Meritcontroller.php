@@ -86,9 +86,12 @@ class Meritcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        dd(423);
+        $collegeDelete = MeritRound::find($id);
+        $collegeDelete->delete();
+        $request->session()->flash('success', 'Recoreds Are Deleted ');
+        return redirect()->route('university.college.index');
     }
 
     public function MeritStatus(Request $request)

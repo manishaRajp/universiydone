@@ -21,6 +21,9 @@ class AddmissionConfirmation extends Model
 
     public function Addmission_id()
     {
-       return $this->hasOne(AddmissionConfirmation::class,'id','addmission_id');
+       return $this->hasOne(Addmission::class,'id','addmission_id');
     }
+
+  
+
 }

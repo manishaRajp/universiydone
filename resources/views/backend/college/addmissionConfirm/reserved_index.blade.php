@@ -4,17 +4,15 @@
     <div class="full_container">
         <div class="inner_container">
             <div class="midde_cont">
-                <div class="row column_title">
+                  <div class="row column_title">
                     <div class="col-md-12">
                         <div class="page_title">
-                            {{-- <a href="{{ route('university.college.create') }}" class="btn btn-success float-left">click to add
-                            college</a>&nbsp; --}}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
-                        <h4 style="font-size:150%;" class="card-title">Confirm Addmission Resrvedbases base List </h4>
+                       <h3>Confirm Addmission Merit base List</h3>
                         <section style="padding-top: 60px;">
                             <div class="container">
                                 <div class="row">

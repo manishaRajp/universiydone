@@ -39,6 +39,12 @@ Route::group(['middleware' => 'auth:college'], function () {
     Route::get('change-view', [CollegeController::class, 'changePasswordview'])->name('view');
     Route::post('change-pass', [CollegeController::class, 'changePassword'])->name('change_pass');
 
+
+//--------------------------------------Admission Expot------------------------------------
+    Route::get('/file-import', [CollegeController::class, 'importView'])->name('import-view');
+    Route::post('/import', [CollegeController::class, 'import'])->name('import');
+    Route::get('/export-meal', [CollegeController::class, 'exportmeal'])->name('export-meal');
+
 //---------------------------------------Course Selection----------------------------------
 
 Route::resource('course',CourseController::class);

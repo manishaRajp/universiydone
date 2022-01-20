@@ -4,6 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    {{-- <h6>Your are only one time able to InsertMarks ..</h6> --}}
                     <div class="card-header">{{ __('Add Marks') }}</div>
                     <div class="card-body">
                         <form method="POST" enctype="multipart/form-data" id="add_marks"
@@ -24,7 +25,8 @@
                                             class="col-md-4 col-form-label text-md-end">{{ $subject->name }}</label>
                                         <div class="col-md-6">
                                             <input type="number" class="form-control" id="sub[]"
-                                                name="sub[{{ $subject->id }}]" value="{{ $subject->obtain_mark }}"><br>
+                                                name="sub[{{ $subject->id }}]" value="{{ $subject->obtain_mark }}"
+                                                required><br>
                                             <strong id="sub_{{ $i }}_error" style="color: red">
                                             </strong><br>
                                         </div>
@@ -39,7 +41,12 @@
                                     </button>
                                 </div>
                             @else
-                                <p>You are alredy exxited</p>
+                                <p>You are alredy existed</p>
+                                <div class="page_title">
+                                    <a href="{{ route('marks.index') }}" class="btn btn-outline-white float-left">></i> |
+                                        Go to Home</a>
+                                    <h5></h5>
+                                </div>
                     </div>
                     @endif
                     </form>

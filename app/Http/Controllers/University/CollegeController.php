@@ -74,11 +74,11 @@ class CollegeController extends Controller
         return redirect()->route('university.college.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request ,$id)
     {
-        dd(452);
-        $compani = College::find($id);
-        $compani->delete();
-        return redirect()->route('company.index');
+        $collegeDelete = College::find($id);
+        $collegeDelete->delete();
+        $request->session()->flash('success', 'Recoreds Are Deleted ');
+        return redirect()->route('university.college.index');
     }
 }

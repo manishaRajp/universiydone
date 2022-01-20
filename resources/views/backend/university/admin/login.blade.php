@@ -20,7 +20,7 @@
                             <div class="row mb-3">
                                 <span class="input-icon"><i class="fa fa-user"></i></span>
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" autofocus placeholder="Username">
+                                    name="email" value="{{ old('email') }}"  placeholder="Username" autocomplete="off">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

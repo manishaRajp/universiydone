@@ -29,11 +29,23 @@ class MeritDataTable extends DataTable
                     return '<a data-id="' . $data->id . '" id="status" class="btn-sm btn btn-outline-danger">Inactive</a>';
                 }
             })
+            ->addColumn('action', function ($data) {
+                return
+                    '
+                      <form action="' . route("university.merti.destroy", $data->id) . '" method="POST">
+                    ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
+                        <button type="submit" class="btn btn-danger"
+                        onclick="return confirm(\'Are You Sure Want to Delete?\')"
+                        ><i class="fa fa-trash"></i>
+                  </form>
+                    ';
+            })
 
             ->editColumn('course_id', function ($data) {
                 return $data->course->name;
             })
-            ->rawColumns(['course_id','status'])
+            ->rawColumns(['course_id', 'status','action'])
             ->addIndexColumn();
     }
 
@@ -85,6 +97,7 @@ class MeritDataTable extends DataTable
             Column::make('end_date'),
             Column::make('merit_result_declare_date'),
             Column::make('status'),
+            Column::make('action'),
         ];
     }
 

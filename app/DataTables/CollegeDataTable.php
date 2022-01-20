@@ -23,9 +23,15 @@ class CollegeDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return
                     '
-                    <a href="' . route("university.college.show", $data->id) . '"class="btn btn-outline-success"><i class=" fa fa-eye"></i></a>
-                    <a href="' . route("university.college.edit", $data->id) . '"class="btn btn-outline-info"><i class="fa fa-pencil"></i></a>
-
+                    <a href="' . route("university.college.show", $data->id) . '"class="btn btn-success"><i class=" fa fa-eye"></i></a>
+                    <br><a href="' . route("university.college.edit", $data->id) . '"class="btn btn-outline-info"><i class="fa fa-pencil"></i></a>
+                      <form action="' . route("university.college.destroy", $data->id) . '" method="POST">
+                    ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
+                        <button type="submit" class="btn btn-danger"
+                        onclick="return confirm(\'Are You Sure Want to Delete?\')"
+                        ><i class="fa fa-trash"></i>
+                  </form>
                     ';
             })
             ->rawColumns(['logo', 'action'])

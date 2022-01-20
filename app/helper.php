@@ -45,6 +45,4 @@ if (!function_exists('uploadFile')) {
             return $merit_total;
         }
     }
-
-    
 }

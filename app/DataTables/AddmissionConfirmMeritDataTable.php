@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Addmission;
 use App\Models\AddmissionConfirmation;
 use App\Models\AddmissionConfirmMerit;
 use App\Models\CollegeMerit;
@@ -14,7 +15,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class AddmissionConfirmMeritDataTable extends DataTable
 {
-   
+
     public function dataTable($query)
     {
         return datatables()
@@ -22,14 +23,11 @@ class AddmissionConfirmMeritDataTable extends DataTable
             ->addColumn('action', 'addmissionconfirmmerit.action');
     }
 
-  
+
     public function query(AddmissionConfirmation $model)
     {
-
-        // $merit = AddmissionConfirmation::select('confirmation_type','M')->first();
-        return AddmissionConfirmation::select('confirmation_type', 'M')->first();
-
-        
+        // $type = AddmissionConfirmation::select('confirmation_type')->where('confirmation_type', 'M')->with(Auth::user())->first();
+        return $model->newQuery();
     }
 
     /**
@@ -40,18 +38,15 @@ class AddmissionConfirmMeritDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('addmissionconfirmmerit-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('addmissionconfirmmerit-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Blfrtip')
+            ->orderBy(1)
+            ->buttons(
+                Button::make('excel'),
+                Button::make('pdf'),
+            );
     }
 
     /**
@@ -68,6 +63,7 @@ class AddmissionConfirmMeritDataTable extends DataTable
             Column::make('confirm_round_id'),
             Column::make('confirm_merit'),
             Column::make('confirmation_type'),
+
         ];
     }
 

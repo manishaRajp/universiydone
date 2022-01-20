@@ -13,36 +13,26 @@ class AddmissionConfirm extends Controller
 {
 
     public function index()
-    {  
+    {
+        $addmissionConfirm = AddmissionConfirmation::with('Addmission_id')->where('addmission_id', Auth::user()->id)->first();
+        // dd($addmissionConfirm);
         $addmission = Addmission::where('user_id', Auth::user()->id)->first();
-        if($addmission == NULL){
-            $status = true;
-        } else{
-            $status = false;
-        }
         // dd($addmission);
-        // $addmission_confirm = AddmissionConfirmation::where('addmission_id',
-        // $addmission->id)->first();
-        // dd($addmission_confirm);
-        return view('frontend.addmission.admission-confirm', compact('addmission','status'));
+        return view('frontend.addmission.admission-confirm', compact('addmission', 'addmissionConfirm'));
     }
 
 
     public function create()
     {
-
     }
-
-
     public function store(Request $request)
     {
-        $addmission_confirm = AddmissionConfirmation::where('addmission_id', $request['addmission_id'])->first();
-        dd($addmission_confirm);
-        if ($addmission_confirm == null) {
-            $addmission = Addmission::where('user_id', Auth::user()->id)->first();
-            $request->session()->flash('danger', 'Please go for Admmision Prosses');
-            return view('frontend.addmission.admission-confirm', compact('addmission'));
-        } else {
+        // $addmission_confirm = Addmission::where('id', Auth::user()->id)->first();
+        // if ($addmission_confirm == null) {
+        //     $addmission = Addmission::where('user_id', Auth::user()->id)->first();
+        //     $request->session()->flash('danger', 'Please go for Admmision Prosses');
+        //     return view('frontend.addmission.admission-confirm', compact('addmission'));
+        // } else {
             $addmissionConfirm = Addmission::where('user_id', Auth::user()->id)->pluck('id')->first();
             $confirm = new AddmissionConfirmation();
             $confirm->addmission_id = $addmissionConfirm;
@@ -52,11 +42,11 @@ class AddmissionConfirm extends Controller
             $confirm->confirmation_type = 'M';
             $confirm->save();
             return redirect()->route('home');
-        }
+        // }
     }
     public function show($id)
     {
-        //
+        // 
     }
 
 
