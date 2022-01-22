@@ -49,9 +49,9 @@
 
     @include('backend.university.admin.layouts.menubar')
     @include('backend.university.admin.layouts.header')
+    <br>
+    <br>
     @include('flash-message')
-
-
     @yield('content')
     <!-- jQuery -->
     <script src="{{ asset('Admin/asset/js/jquery.min.js') }}"></script>

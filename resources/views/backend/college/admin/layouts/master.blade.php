@@ -47,6 +47,8 @@
 
     @include('backend.college.admin.layouts.menubar')
     @include('backend.college.admin.layouts.header')
+    <br>
+    <br>
     @include('flash-message')
 
 

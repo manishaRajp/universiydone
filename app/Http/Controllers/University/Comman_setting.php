@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\University;
 
+use App\Contracts\University\commanSettingContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\University\CommanSettingUpdate;
 use App\Models\CommonSetting;
@@ -11,6 +12,10 @@ use Illuminate\Support\Facades\Log;
 
 class Comman_setting extends Controller
 {
+    public function __construct(commanSettingContract $collegeRegister)
+    {
+        $this->collegeRegister = $collegeRegister;
+    }
 
     public function index()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\University;
 
+use App\Contracts\University\subjectContract;
 use App\DataTables\SubjectDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\University\subjectUpdate;
@@ -10,6 +11,12 @@ use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+    public function __construct(subjectContract $subjectService)
+    {
+        $this->subjectService = $subjectService;
+    }
+
+
     
     public function index(SubjectDataTable $dataTable)
     {
@@ -63,14 +70,9 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(subjectUpdate $request, $id)
+    public function update(subjectUpdate $request)
     {
-        $sub_update = Subject::find($id);
-        $sub_update->name = $request->name;
-        $sub_update->code = $request->code;
-        $sub_update->update();
-        $request->session()->flash('info', 'Recoreds Are Updates ');
-        return redirect()->route('university.subject.index');
+        return $this->subjectService->update($request->all());
     }
 
     /**

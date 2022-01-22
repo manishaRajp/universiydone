@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\University;
 
+use App\Contracts\University\collegeContract;
 use App\DataTables\CollegeDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\University\CollegeStore;
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Mail;
 
 class CollegeController extends Controller
 {
+    public function __construct(collegeContract $collegeRegister)
+    {
+        $this->collegeRegister = $collegeRegister;
+    }
+
 
     public function index(CollegeDataTable $dataTable)
     {
@@ -27,19 +33,7 @@ class CollegeController extends Controller
 
     public function store(CollegeStore $request)
     {
-        $images = uploadFile($request['logo'], 'CollegeLogo');
-        $clg = new College();
-        $clg->name = $request->name;
-        $clg->email = $request->email;
-        $clg->contact_no = $request->contact_no;
-        $clg->address = $request->address;
-        $clg->password = Hash::make($request->password);
-        $clg->logo = $images;
-        $clg->status = 1;
-        $clg->save();
-
-        Mail::to($clg->email)->send(new registermail($request->all()));
-        return redirect()->route('university.college.index')->with('success', 'Data is successfully added!');
+        return $this->collegeRegister->store($request->all());
     }
 
     public function show($id)
@@ -58,20 +52,7 @@ class CollegeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $clg_update = College::find($id);
-        if (isset($request->logo)) {
-            $image = uploadFile($request->logo, 'CollegeLogo');
-        } else {
-            $image = $clg_update->getRawOriginal('logo');
-        }
-        $clg_update->name = $request->name;
-        $clg_update->email = $request->email;
-        $clg_update->contact_no = $request->contact_no;
-        $clg_update->address = $request->address;
-        $clg_update->logo = $image;
-        $clg_update->update();
-        $request->session()->flash('info', 'Recoreds Are Updates ');
-        return redirect()->route('university.college.index');
+        return $this->collegeRegister->update($request->all());
     }
 
     public function destroy(Request $request ,$id)
