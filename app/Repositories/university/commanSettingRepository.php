@@ -30,6 +30,6 @@ class commanSettingRepository implements commanSettingContract
                 $result = CommonSetting::insert($insertData);
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('info', 'Updated  successfully added!');
     }
 }
