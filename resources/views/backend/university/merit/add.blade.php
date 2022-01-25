@@ -21,15 +21,15 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <form  id="meritForm" class="forms-sample myform" method="POST"
+                                    <form id="meritForm" class="forms-sample myform" method="POST"
                                         action="{{ route('university.merti.store') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Select Course
                                                 :</label>
                                             <div class="col-sm-9">
-                                                <select class="@error('course_id') is-invalid @enderror" name="course_id"
-                                                    id="course_id" multiple data-live-search="true">
+                                                <select class="form-control @error('course_id') is-invalid @enderror" name="course_id"
+                                                    id="course_id"  data-live-search="true">
                                                     <option value=""></option>
                                                     @foreach ($course as $select)
                                                         <option value="{{ $select->id }}">{{ $select->name }}</option>
@@ -88,8 +88,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">final
-                                                decalretion date</label>
+                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">
+                                                Decalretion date</label>
                                             <div class="col-sm-9">
                                                 <input type="date"
                                                     class="form-control @error('merit_result_declare_date') is-invalid @enderror"
@@ -123,13 +123,13 @@
 @endsection
 
 @push('scripts')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script type="text/javascript">
         $(document).ready(function() {
-            $('select').selectpicker();
+            $('.select').selectpicker();
         });
 
         $("#meritForm").validate({
@@ -140,12 +140,12 @@
                 round_no: {
                     required: true,
                     integer: true,
-                    range: [1,3],
-                  
+                    range: [1, 3],
+
                 },
                 start_date: {
                     required: true,
-                    
+
 
                 },
                 end_date: {
@@ -179,7 +179,7 @@
             unhighlight: function(element, errorClass, validClass) {
                 $(element).addClass("is-valid").removeClass("is-invalid");
             },
-           
+
         });
     </script>
 @endpush

@@ -34,7 +34,7 @@
 
 <body id="page-top">
     @include('frontend.layouts.header')
-    @include('flash-message')
+    
 
     @yield('content')
     <script type="text/javascript"></script>

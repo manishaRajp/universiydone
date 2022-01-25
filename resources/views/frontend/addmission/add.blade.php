@@ -1,8 +1,5 @@
 @extends('frontend.layouts.layout-form')
 @section('content')
-    <link rel="stylesheet " type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <div class="container">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('addmission.store') }}"
             enctype="multipart/form-data">
@@ -14,7 +11,7 @@
                     </label>
                     <div class="col-sm-9">
                         <select class="selectpicker form-control @error('college_id') is-invalid @enderror"
-                            name="college_id[]" id="college_id" multiple data-live-search="true">
+                            name="college_id[]" id="college_id"  data-live-search="true">
                             <option value=""></option>
                             @foreach ($clg_select as $select)
                                 <option value="{{ $select->id }}">{{ $select->name }}</option>
@@ -105,11 +102,4 @@
         </form>
     </div>
 @endsection
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select').selectpicker();
-    });
-</script>
+

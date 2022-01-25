@@ -2,6 +2,7 @@
     <div class="container">
         <div class="masthead-subheading">Student</div>
         <div class="masthead-heading text-uppercase">Welcome to Student Portal</div>
+        <p>@include('flash-message')</p>
     </div>
 </header>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">

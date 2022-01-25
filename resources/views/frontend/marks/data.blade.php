@@ -25,26 +25,26 @@
         </style>
     </head>
 
-    <body>
+        <div class="from-control">
+            <h2>Merit</h2>
+            <h1>You Just able Once to View Marks
+            </h1>
+            <table>
+                <tr>
+                    <th>Total marks</th>
+                    <th>Total Obtain Marks</th>
+                    <th>Student Merit</th>
+                </tr>
+                <tr>
+                    <td>{{ $total_marks }}</td>
+                    <td>{{ $total_obtain_mark }}</td>
+                    <td>{{ $student_merit_total }}</td>
+                </tr>
 
-        <h2>Merit</h2>
-        <h1>You Just able Once to View Marks
-        </h1>
-        <table>
-            <tr>
-                <th>Total marks</th>
-                <th>Total Obtain Marks</th>
-                <th>Student Merit</th>
-            </tr>
-            <tr>
-                <td>{{ $total_marks }}</td>
-                <td>{{ $total_obtain_mark }}</td>
-                <td>{{ $student_merit_total }}</td>
-            </tr>
+            </table>
+        </div>
 
-        </table>
-
-    </body>
+  
 
     </html>
 

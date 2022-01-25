@@ -31,7 +31,7 @@ class MeritDataTable extends DataTable
             })
             ->addColumn('action', function ($data) {
                 return
-                    '<form action="' . route("college.merits.destroy", $data->id) . '" method="POST">
+                    '<form action="' . route("college.merit.destroy", $data->id) . '" method="POST">
                     ' . csrf_field() . '
                     ' . method_field("DELETE") . '
                         <button type="submit" class="btn btn-danger"
