@@ -25,7 +25,6 @@ class MeritStore extends FormRequest
     {
         return [
             'course_id' => 'required',
-            'merit_round_id' => 'required|integer',
             'merit' => 'required|integer',
         ];
     }

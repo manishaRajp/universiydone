@@ -24,7 +24,17 @@ class Courses_collegeDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return
                     '<a href="' . route("college.course.edit", $data->id) . '"class="btn btn-outline-info"><i class="fa fa-pencil"></i></a>
-                    ';
+                  ';
+            })
+            ->addColumn('deleted_at', function ($data) {
+                return ' 
+              <form action="' . route("college.course.destroy", $data->id) . '" method="POST">
+                    ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
+                        <button type="submit" class="btn btn-danger"
+                        onclick="return confirm(\'Are You Sure Want to Delete?\')"
+                        ><i class="fa fa-trash"></i>
+                  </form>';
             })
             ->editColumn('college_id', function ($data) {
                 return $data->college->name;
@@ -36,11 +46,11 @@ class Courses_collegeDataTable extends DataTable
                 $sql = "colleges.name like ?";
                 $data->whereRaw($sql, ["%{$keyword}%"]);
             })
-            ->rawColumns(['action', 'college_id', 'course_id'])
+            ->rawColumns(['action', 'college_id', 'course_id', 'deleted_at'])
             ->addIndexColumn();
     }
 
-   
+
     public function query(CollegeCourse $model)
     {
         $model = $model
@@ -87,6 +97,7 @@ class Courses_collegeDataTable extends DataTable
             Column::make('reserved_seat'),
             Column::make('merit_seat'),
             Column::computed('action'),
+            Column::computed('deleted_at'),
         ];
     }
 

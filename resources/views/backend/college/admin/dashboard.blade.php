@@ -17,7 +17,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="full counter_section margin_bottom_30">
                            <div>
-                               <h1>Show Eligiable students<h1>
+                               <h1><h1>
                            </div>
                         </div>
                     </div>

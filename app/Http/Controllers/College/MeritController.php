@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\College;
 
+use App\Contracts\college\MeritContract;
 use App\DataTables\College_MeritDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\College\MeritStore;
@@ -9,98 +10,60 @@ use App\Http\Requests\College\MeritUpdate;
 use App\Models\CollegeMerit;
 use App\Models\Course;
 use App\Models\CollegeCourse;
+use App\Models\MeritRound;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MeritController extends Controller
 {
-
-
+    public function __construct(MeritContract $meritService)
+    {
+        $this->meritService = $meritService;
+    }
     public function index(College_MeritDataTable $dataTable)
     {
         return $dataTable->render('backend.college.merit.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
+
         $course_select = Course::get();
         return view('backend.college.merit.add', compact('course_select'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(MeritStore $request)
     {
-        $clg_id = Auth::guard('college')->user()->id;
-        $add_merit = new CollegeMerit();
-        $add_merit->college_id = $clg_id;
-        $add_merit->course_id = $request['course_id'];
-        $add_merit->merit_round_id = $request['merit_round_id'];
-        $add_merit->merit = $request['merit'];
-        $add_merit->save();
-        return redirect()->route('college.merit.index');
-        
+        return $this->meritService->store($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        dd('view');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $course_select = CollegeCourse::get();
         $clg_merit = CollegeMerit::find($id);
-        return view('backend.college.merit.edit',compact('clg_merit','course_select'));
+        return view('backend.college.merit.edit', compact('clg_merit', 'course_select'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(MeritUpdate $request, $id)
     {
-        $clg_merit_update = CollegeMerit::find($id);
-        $clg_merit_update->course_id = $request->course_id;
-        $clg_merit_update->merit_round_id = $request->merit_round_id;
-        $clg_merit_update->merit = $request->merit;
-        $clg_merit_update->update();
-        $request->session()->flash('info', 'Recoreds Are Updates ');
-        return redirect()->route('college.merit.index');
+        return $this->meritService->update($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Request $request, $id)
     {
-        dd(4324);
+        $collegeDelete = CollegeMerit::find($id);
+        $collegeDelete->delete();
+        $request->session()->flash('success', 'Recored Deleted ');
+        return redirect()->route('college.merit.index');
     }
 }

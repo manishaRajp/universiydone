@@ -26,11 +26,19 @@ class College_MeritDataTable extends DataTable
             })
             ->addColumn('action', function ($data) {
                 return
-                    '
-                    <a href="' . route("college.merit.edit", $data->id) . '"class="btn btn-outline-info"><i class="fa fa-pencil"></i></a>
-                    ';
+                    '<a href="' . route("college.merit.edit", $data->id) . '"class="btn btn-outline-info"><i class="fa fa-pencil"></i></a>';
             })
-            ->rawColumns(['college_id','action'])
+            ->addColumn('deleted_at', function ($data) {
+                return
+            ' <form action="' . route("college.merit.destroy", $data->id) . '" method="POST">
+                    ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
+                        <button type="submit" class="btn btn-danger"
+                        onclick="return confirm(\'Are You Sure Want to Delete?\')"
+                        ><i class="fa fa-trash"></i>
+                  </form>';
+            })
+            ->rawColumns(['college_id','action','deleted_at'])
             ->addIndexColumn();
     }
 
@@ -80,7 +88,8 @@ class College_MeritDataTable extends DataTable
             Column::make('course_id'), 
             Column::make('merit_round_id'), 
             Column::make('merit'), 
-            Column::computed('action')
+            Column::computed('action'),
+            Column::computed('deleted_at')
         ];
     }
 

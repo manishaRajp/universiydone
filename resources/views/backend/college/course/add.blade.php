@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2"
-                                                class="col-sm-3 col-form-label">merit_seat</label>
+                                                class="col-sm-3 col-form-label">Reserved Base</label>
                                             <div class="col-sm-9">
                                                 <input type="text"
                                                     class="form-control @error('reserved_seat') is-invalid @enderror"
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2"
-                                                class="col-sm-3 col-form-label">merit_seat</label>
+                                                class="col-sm-3 col-form-label">Merit Base</label>
                                             <div class="col-sm-9">
                                                 <input type="text"
                                                     class="form-control @error('merit_seat') is-invalid @enderror"
@@ -113,7 +113,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('select').selectpicker();
+            $('.select').selectpicker();
         });
     </script>
 @endpush

@@ -31,8 +31,7 @@ class MeritDataTable extends DataTable
             })
             ->addColumn('action', function ($data) {
                 return
-                    '
-                      <form action="' . route("university.merti.destroy", $data->id) . '" method="POST">
+                    '<form action="' . route("college.merits.destroy", $data->id) . '" method="POST">
                     ' . csrf_field() . '
                     ' . method_field("DELETE") . '
                         <button type="submit" class="btn btn-danger"
@@ -45,7 +44,7 @@ class MeritDataTable extends DataTable
             ->editColumn('course_id', function ($data) {
                 return $data->course->name;
             })
-            ->rawColumns(['course_id', 'status','action'])
+            ->rawColumns(['course_id','status','action'])
             ->addIndexColumn();
     }
 

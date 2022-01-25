@@ -50,21 +50,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputUsername2"
-                                                class="col-sm-3 col-form-label">merit_round_id</label>
-                                            <div class="col-sm-9">
-                                                <input type="text"
-                                                    class="form-control @error('merit_round_id') is-invalid @enderror"
-                                                    id="merit_round_id" name="merit_round_id"
-                                                    value="{{ $clg_merit->merit_round_id }}" placeholder="merit_round_id">
-                                                @error('merit_round_id')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">merit</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control @error('merit') is-invalid @enderror"

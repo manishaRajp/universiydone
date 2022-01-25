@@ -26,13 +26,11 @@
                                     <form class="forms-sample myform" method="POST"
                                         action="{{ route('college.merit.store') }}" enctype="multipart/form-data">
                                         @csrf
-
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Select Course
                                                 :</label>
                                             <div class="col-sm-9">
-                                                <select
-                                                    class="selectpicker form-control @error('course_id') is-invalid @enderror"
+                                                <select class="form-control @error('course_id') is-invalid @enderror"
                                                     name="course_id" id="course_id" data-live-search="true">
                                                     <option value=""></option>
                                                     @foreach ($course_select as $select)
@@ -47,13 +45,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputUsername2"
-                                                class="col-sm-3 col-form-label">Merit Round</label>
+                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Merit
+                                                Round</label>
                                             <div class="col-sm-9">
                                                 <input type="text"
                                                     class="form-control @error('merit_round_id') is-invalid @enderror"
                                                     id="merit_round_id" name="merit_round_id"
-                                                    value="{{ old('merit_round_id') }}" placeholder="merit_round">
+                                                    value="{{ old('merit_round_id') }}"
+                                                    placeholder="This Will Provide by University" readonly>
                                                 @error('merit_round_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -98,7 +97,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('select').selectpicker();
+            $('.select').selectpicker();
         });
     </script>
 @endpush

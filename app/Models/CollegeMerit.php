@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CollegeMerit extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = "college_merits";
 
     protected $fillable = [
@@ -15,6 +18,7 @@ class CollegeMerit extends Model
         'course_id',
         'merit_round_id',
         'merit',
+        'deleted_at'
     ];
     public function course()
     {
