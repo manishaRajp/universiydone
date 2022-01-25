@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Contracts\University\collegeContract;
+use App\Contracts\University\commanSettingContract;
 use App\Contracts\University\subjectContract;
 use App\Repositories\university\collegeRepository;
+use App\Repositories\university\commanSettingRepository;
 use App\Repositories\university\subjectRepository;
 use Illuminate\Support\ServiceProvider;
 
