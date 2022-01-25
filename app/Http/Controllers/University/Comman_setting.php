@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Log;
 
 class Comman_setting extends Controller
 {
-    public function __construct(commanSettingContract $collegeRegister)
+    public function __construct(commanSettingContract $comaanservice)
     {
-        $this->collegeRegister = $collegeRegister;
+        $this->commanservice = $comaanservice;
     }
 
     public function index()
@@ -32,23 +32,7 @@ class Comman_setting extends Controller
 
     public function store(Request $request)
     {
-        foreach ($request['marks'] as $key => $val) {
-            $result = CommonSetting::where('id', $key)->first();
-            if (isset($result)) {
-                $insertData = [
-                    'subject_id' => $key,
-                    'marks' => $val,
-                ];
-                $result->update($insertData);
-            } else {
-                $insertData = [
-                    'subject_id' => $key,
-                    'marks' => $val,
-                ];
-                $result = CommonSetting::insert($insertData);
-            }
-        }
-        return redirect()->back();
+        return $this->commanservice->store($request->all());
     }
 
 

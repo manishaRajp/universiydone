@@ -20,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(collegeContract::class,collegeRepository::class);
         $this->app->bind(subjectContract::class,subjectRepository::class);
+        $this->app->bind(commanSettingContract::class,commanSettingRepository::class);
     }
 
     /**
