@@ -1,4 +1,4 @@
-@extends('Backend.college.admin.layouts.master')
+@extends('backend.college.admin.layouts.master')
 @section('content')
     <div class="row column_title">
         <div class="col-md-12">
