@@ -1,7 +1,7 @@
 @extends('frontend.layouts.layout-form')
 @section('content')
     <div class="container">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('addmission.store') }}"
+        <form class="form-horizontal" role="form" id="addForm" method="POST" action="{{ route('addmission.store') }}"
             enctype="multipart/form-data">
             @csrf
             <h2>Addmission</h2>
@@ -10,8 +10,8 @@
                     <label for="exampleInputUsername2" class="col-sm-3 control-label">Select College
                     </label>
                     <div class="col-sm-9">
-                        <select class="selectpicker form-control @error('college_id') is-invalid @enderror"
-                            name="college_id[]" id="college_id"  data-live-search="true">
+                        <select class="form-control @error('college_id') is-invalid @enderror" name="college_id[]"
+                            id="college_id" multiple>
                             <option value=""></option>
                             @foreach ($clg_select as $select)
                                 <option value="{{ $select->id }}">{{ $select->name }}</option>
@@ -102,4 +102,3 @@
         </form>
     </div>
 @endsection
-
