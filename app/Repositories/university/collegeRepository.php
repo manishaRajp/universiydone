@@ -26,11 +26,9 @@ class collegeRepository implements collegeContract
         $clg->logo = $images;
         $clg->status = 1;
         $clg->save();
-        
-        Mail::to($clg->email)->send(new registermail($request['email'], $request['name'], $request['password']));
+        Mail::to($clg->email)->send(new registermail($request));
         return redirect()->route('university.college.index')->with('success', 'Data is successfully added!');
     }
-
 
     public function update(array $request)
     {

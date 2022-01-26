@@ -11,7 +11,7 @@ class registermail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $password;
+    public $data;
     public function __construct($data)
     {
         $this->data=$data;
