@@ -15,9 +15,7 @@ class AddmissionConfirm extends Controller
     public function index()
     {
         $addmissionConfirm = AddmissionConfirmation::with('Addmission_id')->where('addmission_id', Auth::user()->id)->first();
-        // dd($addmissionConfirm);
         $addmission = Addmission::where('user_id', Auth::user()->id)->first();
-        // dd($addmission);
         return view('frontend.addmission.admission-confirm', compact('addmission', 'addmissionConfirm'));
     }
 
@@ -27,12 +25,6 @@ class AddmissionConfirm extends Controller
     }
     public function store(Request $request)
     {
-        // $addmission_confirm = Addmission::where('id', Auth::user()->id)->first();
-        // if ($addmission_confirm == null) {
-        //     $addmission = Addmission::where('user_id', Auth::user()->id)->first();
-        //     $request->session()->flash('danger', 'Please go for Admmision Prosses');
-        //     return view('frontend.addmission.admission-confirm', compact('addmission'));
-        // } else {
             $addmissionConfirm = Addmission::where('user_id', Auth::user()->id)->pluck('id')->first();
             $confirm = new AddmissionConfirmation();
             $confirm->addmission_id = $addmissionConfirm;
@@ -41,8 +33,7 @@ class AddmissionConfirm extends Controller
             $confirm->confirm_merit = $request['merit'];
             $confirm->confirmation_type = 'M';
             $confirm->save();
-            return redirect()->route('home');
-        // }
+            return redirect()->route('home')->with('success','data added');
     }
     public function show($id)
     {
