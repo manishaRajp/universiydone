@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Addmission;
 use App\Models\College;
 use App\Models\Course;
-use App\Models\MeritRound;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +19,7 @@ class AdmissionController extends Controller
     }
    
     public function index()
-    {
-        
+    {        
     }
 
     public function create()
@@ -36,25 +33,22 @@ class AdmissionController extends Controller
   
     public function store(Request $request)
     {
-        return $this->addmissionservice->store($request->all());
+      return $this->addmissionservice->store($request->all());
     }
 
    
     public function show($id)
     {
-        
     }
 
  
     public function edit($id)
     {
-        //
     }
 
    
     public function update(Request $request, $id)
     {
-        //
     }
 
    

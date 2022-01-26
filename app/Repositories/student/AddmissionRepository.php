@@ -3,6 +3,7 @@
 namespace App\Repositories\student;
 
 use App\Contracts\student\AddmissionContract;
+use App\Mail\AddmisionConfirmationMAil;
 use App\Models\Addmission;
 use App\Models\MeritRound;
 use Carbon\Carbon;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AddmissionRepository implements AddmissionContract
 {

@@ -3,12 +3,14 @@
 namespace App\Repositories\university;
 
 use App\Contracts\University\collegeContract;
+use App\Mail\registermail;
 use App\Models\College;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class collegeRepository implements collegeContract
 {
@@ -24,8 +26,8 @@ class collegeRepository implements collegeContract
         $clg->logo = $images;
         $clg->status = 1;
         $clg->save();
-
-        // Mail::to($clg->email)->send(new registermail($request->all()));
+        
+        Mail::to($clg->email)->send(new registermail($request['email'], $request['name'], $request['password']));
         return redirect()->route('university.college.index')->with('success', 'Data is successfully added!');
     }
 
