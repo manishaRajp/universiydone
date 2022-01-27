@@ -1,6 +1,5 @@
 @extends('backend.college.admin.layouts.master')
 @section('content')
-    <!-- profile contant section -->
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
@@ -8,7 +7,6 @@
             </div>
         </div>
     </div>
-    <!-- row -->
     <div class="row column1">
         <div class="col-md-2"></div>
         <div class="col-md-8">
@@ -25,7 +23,7 @@
                                 <div class="card-body pt-5">
                                     <div class="card-header card-header-primary">
                                         <h4 class="card-title">Edit Profile</h4>
-                                        <img src="{{ asset('/storage/CollegeLogo/' . Auth::guard('college')->user()->logo) }}"
+                                        <img src="{{ asset('/storage/CollegeLogo/'.Auth::guard('college')->user()->logo) }}"
                                             width="100" height="100" alt="profile-image" class="profile">
                                     </div>
                                 </div>
@@ -66,9 +64,10 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="contact_no">Contact No.</label>
-                                                    <input type="text"
-                                                        class="form-control @error('contact_no') is-invalid @enderror" id="contact_no"
-                                                        name="name" value="{{ Auth::guard('college')->user()->contact_no }}"
+                                                    <input type="number"
+                                                        class="form-control @error('contact_no') is-invalid @enderror"
+                                                        id="contact_no" name="contact_no"
+                                                        value="{{ Auth::guard('college')->user()->contact_no }}"
                                                         autocomplete="off">
                                                     @error('contact_no')
                                                         <span class="invalid-feedback" role="alert">
@@ -81,8 +80,9 @@
                                                 <div class="form-group">
                                                     <label for="address">Address</label>
                                                     <input type="text"
-                                                        class="form-control @error('address') is-invalid @enderror" id="address"
-                                                        name="address" value="{{ Auth::guard('college')->user()->address }}"
+                                                        class="form-control @error('address') is-invalid @enderror"
+                                                        id="address" name="address"
+                                                        value="{{ Auth::guard('college')->user()->address }}"
                                                         autocomplete="off">
                                                     @error('address')
                                                         <span class="invalid-feedback" role="alert">
@@ -116,9 +116,5 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-        <!-- end row -->
     </div>
-
-    <!-- end user profile section -->
-
 @endsection

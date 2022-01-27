@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\College;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\college\ProfileRequest;
 use App\Models\College;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
@@ -33,21 +34,22 @@ class CollegeController extends Controller
         return view('backend.college.admin.profile');
     }
 
-    public function profileupdate(Request $request)
+    public function profileupdate(ProfileRequest $request)
     {
-        $admin = College::get()->first();
+
+        $college = College::get()->first();
         if (isset($request->logo)) {
             $image = uploadFile($request->logo, 'CollegeLogo');
         } else {
-            $image = $admin->getRawOriginal('logo');
+            $image = $college->getRawOriginal('logo');
         }
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->contact_no = $request->contact_no;
-        $admin->address = $request->address;
-        $admin->logo = $image;
-        $admin->save();
-        return view('backend.college.admin.dashboard');
+        $college->name = $request->name;
+        $college->email = $request->email;
+        $college->contact_no = $request->contact_no;
+        $college->address = $request->address;
+        $college->logo = $image;
+        $college->save();
+        return redirect()->route('college.dasboard');
     }
 
 

@@ -19,7 +19,7 @@
                                      </ul>
                                      <ul class="user_profile_dd">
                                          <li>
-                                             <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="{{ asset('/storage/CollegeLogo/'.Auth::guard('college')->user()->logo) }}" alt="#" /><span class="name_user">{{ Auth::guard('college')->user()->name }}</span></a>
+                                             <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="{{ asset('/storage/CollegeLogo/'.Auth::guard('college')->user()->logo) }}" alt="#" /><span class="name_user">{{ Auth::user()->name }}</span></a>
                                              <div class="dropdown-menu">
                                                  <a class="dropdown-item" href="{{ route('college.profile_view') }}">My Profile</a>
                                                  <a class="dropdown-item" href="{{ route('college.view') }}">Change password</a>
