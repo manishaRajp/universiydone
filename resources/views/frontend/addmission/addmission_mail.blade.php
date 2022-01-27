@@ -7,9 +7,11 @@
     <div class="card">
         <div class="top"><span>Hello</span>
             <div class="bottom">
-           <p> Your Registration Done </p>
-            <h5>Here Admission information</h5>
-            <h6>Email:-{{ $adminssionMain['confirmation_type']}}</h6>
+           <p> Your Addmission Procces is Done</p>
+            <h5>Now Do the Addmission Confirmation</h5>
+             <div class="wrapper">
+                <a href="{{ route('addmoission-confirm.store')}}">click Here!</a>
+            </div>
             </div>
         </div>
     </div>

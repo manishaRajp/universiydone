@@ -7,14 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AddmisionConfirmationMAil extends Mailable
+class AddmissionMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-   
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     /**

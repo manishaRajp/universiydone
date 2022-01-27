@@ -16,8 +16,8 @@ class AddmissionConfirm extends Controller
 
     public function index()
     {
-        $addmissionConfirm = AddmissionConfirmation::with('Addmission_id')->where('addmission_id', Auth::user()->id)->first();
         $addmission = Addmission::where('user_id', Auth::user()->id)->first();
+        $addmissionConfirm = AddmissionConfirmation::where('addmission_id', $addmission['id'])->first();
         return view('frontend.addmission.admission-confirm', compact('addmission', 'addmissionConfirm'));
     }
 
@@ -27,13 +27,9 @@ class AddmissionConfirm extends Controller
     }
     public function store(Request $request)
     {
-       
         $addmissionConfirm = Addmission::where('user_id', Auth::user()->id)->pluck('id')->first();
         $confirm = new AddmissionConfirmation();
         $confirm->addmission_id = $addmissionConfirm;
-        // $confirm->confirm_college_id = $request['college_id'];
-        // $confirm->confirm_round_id = $request['merit_round_id'];
-        // $confirm->confirm_merit = $request['merit'];
         $confirm->confirmation_type = 'M';
         $confirm->save();
         return redirect()->route('home')->with('success', 'You Request send Wait for Declaration');

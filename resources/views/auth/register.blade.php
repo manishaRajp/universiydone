@@ -19,7 +19,7 @@
                                     <div class="card-header">{{ __('Register') }}</div>
                                     <div class="card-body">
                                         <form method="POST" action="{{ route('register') }}"
-                                            enctype="multipart/form-data">
+                                            enctype="multipart/form-data" id="regForm">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="name"
@@ -193,3 +193,4 @@
         </div>
     </div>
 @endsection
+

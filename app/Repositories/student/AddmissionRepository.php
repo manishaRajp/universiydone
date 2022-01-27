@@ -3,10 +3,9 @@
 namespace App\Repositories\student;
 
 use App\Contracts\student\AddmissionContract;
-use App\Mail\AddmisionConfirmationMAil;
+use App\Mail\AddmissionMail;
 use App\Models\Addmission;
 use App\Models\MeritRound;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -34,7 +33,7 @@ class AddmissionRepository implements AddmissionContract
       $addmission->merit_round_id = $merit_round;
       $addmission->status = 1;
       $addmission->save();
-      Mail::to(Auth::user('web')->id->email)->send(new AddmisionConfirmationMAil($request));
+      Mail::to(Auth::user('web')->email)->send(new AddmissionMail($request));
       return redirect()->route('home')->with('success', 'Your Addmission Data Saved....Now You Go For admission confirm');
    }
 }
