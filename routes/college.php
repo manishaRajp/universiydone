@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Route;
 
 // ------------------------------Admin ForgetPassword--------------------------
 Route::get('foregtpassword', function () {
-    return view('Backend.Admin.forget_email');
+    return view('backend.college.admin.forget_email');
 })->name('foregtpassword');
 
 Route::get('resetpassword', function () {
-    return view('Backend.Admin.reset');
+    return view('backend.college.admin.reset');
 })->name('resetpassword');
 
 

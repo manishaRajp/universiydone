@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    @dd($adminssionMain)
     <div class="card">
         <div class="top"><span>Hello</span>
             <div class="bottom">

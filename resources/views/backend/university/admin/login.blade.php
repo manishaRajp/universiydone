@@ -37,8 +37,8 @@
                                     </span>
                                 @enderror
                             </div>
-                            <span class="forgot-pass"><a href="{{ route('university.foregtpassword') }}">Lost
-                                    password?</a></span>
+                            <span class="forgot-pass"><a href="{{ route('university.foregtpassword') }}">
+                                </a></span>
                             <button class="btn signin">Login</button>
                         </form>
                     </div>

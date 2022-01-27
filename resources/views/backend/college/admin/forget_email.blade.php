@@ -1,5 +1,5 @@
 <html>
-<title>Admin-Login</title>
+<title>CollegeForget</title>
 <head>
     <link href="{{ asset('Admin/asset/css/fa-fa icon.css') }}" rel="stylesheet" />
     <link href="{{ asset('Admin/asset/css/login.css') }}" rel="stylesheet" />
