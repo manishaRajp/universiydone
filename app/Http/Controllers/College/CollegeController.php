@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\College;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\college\ProfileRequest;
+use App\Http\Requests\College\ProfileRequest;
 use App\Models\College;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
